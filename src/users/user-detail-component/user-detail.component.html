@@ -1,0 +1,53 @@
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Filter users</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search users" />
+  </mat-form-field>
+
+  <mat-progress-spinner
+    *ngIf="isLoading"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+
+  <div *ngIf="errorMsg" class="error-message">{{ errorMsg }}</div>
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    *ngIf="!isLoading && !errorMsg"
+  >
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Phone</th>
+      <td mat-cell *matCellDef="let user">{{ user.phone }}</td>
+    </ng-container>
+
+    <!-- Company Name Column -->
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef>Company</th>
+      <td mat-cell *matCellDef="let user">{{ user.company?.name }}</td>
+    </ng-container>
+
+    <!-- City Column -->
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef>City</th>
+      <td mat-cell *matCellDef="let user">{{ user.address?.city }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
