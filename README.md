@@ -14,7 +14,7 @@ Coming soon or run locally.
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/user-listing-app.git
-cd user-listing-app
+git clone https://github.com/shreedhar-gouli/user-detail-angular.git
+cd user-detail-angular
 npm install
 ng serve
